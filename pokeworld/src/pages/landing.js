@@ -1,7 +1,12 @@
+// Import links
 import React from "react";
-// import { useState, useEffect } from "react";
-// import axios from "axios";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Card } from "react-bootstrap";
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+// Images
 import img from './Name.png';
 import Background from './galaxy.png'
 import poke1 from './poke1.png'
@@ -9,6 +14,10 @@ import decor from './blackhole.png'
 import ring from './ledring.png'
 import poke2 from './pokemon.png'
 import foot from './footer.png'
+import Eevee from './Eevee.png'
+import Bulb from './Bulbasaur.png'
+import Mew from './mewtwo.png'
+
 
 
 function Landing() {
@@ -26,16 +35,16 @@ function Landing() {
        <p style={{color: 'purple', fontSize: '20px', marginLeft: '140px', marginTop: '-75px'}}>Squirtle</p>
        </div>
        <div style={{width: '300px', height: '80px', backgroundColor: ' white', borderRadius: ' 100px', marginLeft: '530px', marginTop: '-80px'}}>
-       <img style={{width: '90px', marginLeft: '20px', marginTop: '-10px'}} src={poke1} />
-       <p style={{color: 'purple', fontSize: '20px', marginLeft: '140px', marginTop: '-75px'}}>Squirtle</p>
+       <img style={{width: '90px', marginLeft: '20px', marginTop: '-10px'}} src={Bulb} />
+       <p style={{color: 'purple', fontSize: '20px', marginLeft: '140px', marginTop: '-60px'}}>Bulbasaur</p>
        </div>
        <div style={{width: '300px', height: '80px', backgroundColor: ' white', borderRadius: ' 100px', marginLeft: '890px', marginTop: '-80px'}}>
-       <img style={{width: '90px', marginLeft: '20px', marginTop: '-10px'}} src={poke1} />
-       <p style={{color: 'purple', fontSize: '20px', marginLeft: '140px', marginTop: '-75px'}}>Squirtle</p>
+       <img style={{width: '90px', marginLeft: '20px', marginTop: '-10px'}} src={Eevee} />
+       <p style={{color: 'purple', fontSize: '20px', marginLeft: '140px', marginTop: '-70px'}}>Eevee</p>
        </div>
        <div style={{width: '300px', height: '80px', backgroundColor: ' white', borderRadius: ' 100px', marginLeft: '1250px', marginTop: '-80px'}}>
-       <img style={{width: '90px', marginLeft: '20px', marginTop: '-10px'}} src={poke1} />
-       <p style={{color: 'purple', fontSize: '20px', marginLeft: '140px', marginTop: '-75px'}}>Squirtle</p>
+       <img style={{width: '90px', marginLeft: '20px', marginTop: '-10px'}} src={Mew} />
+       <p style={{color: 'purple', fontSize: '20px', marginLeft: '140px', marginTop: '-95px'}}>Mewtwo</p>
        </div>
        </div>
 
@@ -75,7 +84,9 @@ function Landing() {
         <p style={{color: 'white'}}>Type: Electric <br/> Abilities: Static</p>
        </div>
 
-       <Card style={{background: 'transparent', color: 'white', borderColor: 'white', width: '400px', height: '70px', borderRadius: '50px', textAlign: 'center', marginTop: '100px', marginLeft: '530px', fontSize: '25px', paddingTop: '12px'}}>View More</Card>
+       <Link to="/compare">
+        <button className="CompareButton">Compare</button>
+      </Link>
 
        <img style={{width: '1200px', marginLeft: '120px', marginTop: '400px'}} src={foot} />
        
