@@ -6,6 +6,7 @@ import Landing from './pages/landing';
 import Compare from './pages/compare';
 import BasicNavbar from './components/navbar';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import PokemonTimelineChart from './pages/timeline';
 
 function App() {
   return (
@@ -21,3 +22,6 @@ function App() {
 }
 
 export default App;
+
+
+

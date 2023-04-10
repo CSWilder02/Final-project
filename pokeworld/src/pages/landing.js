@@ -21,11 +21,18 @@ import Mew from './mewtwo.png'
 
 
 function Landing() {
+
+  const handleButtonClick = () => {
+    window.location.href = "https://pokeapi.co";
+  };
+
     return (
-     <div style={{backgroundImage: `url(${Background})`, width: '1481px', height: '3100px', marginTop: '-20px', backgroundRepeat: 'no-repeat', backgroundColor: '#1A0C35'}}>
+     <div style={{backgroundImage: `url(${Background})`, width: '1481px', height: '3100px', marginTop: '-20px', backgroundRepeat: 'no-repeat', backgroundColor: '#111111'}}>
        <header>
         <img style={{width: '1200px', marginLeft: '170px', marginTop: '100px'}} src={img} />
-        <Card style={{background: 'transparent', color: 'white', borderColor: 'white', width: '400px', height: '70px', borderRadius: '50px', textAlign: 'center', marginTop: '-100px', marginLeft: '180px', fontSize: '25px', paddingTop: '12px'}}>Discover</Card>
+        <button className="DiscoverButton" onClick={handleButtonClick}>
+        Discover More
+      </button>
        </header>
        <p style={{color:'white', marginLeft: '170px', marginTop: '100px', fontSize: '30px'}}>PokeApi is a learning platform to learn us about the Pokemon world. It helps educate <br /> & learn the use of API.</p>
        <h1 style={{color: 'white', marginLeft: '170px', marginTop: '100px'}}>Feautured Pokemon</h1>
@@ -88,7 +95,7 @@ function Landing() {
         <button className="CompareButton">Compare</button>
       </Link>
 
-       <img style={{width: '1200px', marginLeft: '120px', marginTop: '400px'}} src={foot} />
+       <img style={{width: '1200px', marginLeft: '120px', marginTop: '250px'}} src={foot} />
        
      </div>
     )

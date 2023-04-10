@@ -1,87 +1,65 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import {Line} from 'react-chartjs-2'
-import { Chart as ChartJS } from 'chart.js/auto'
-import { Card } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Background from './galaxy2.png'
 
-function Timeline() {
+const PokemonPieChart = () => {
+  const [pokemonName, setPokemonName] = useState('charizard');
+  const [stats, setStats] = useState([]);
 
-    const [pokeData, setPokeData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+      const statData = response.data.stats.map(({ base_stat, stat }) => ({
+        name: stat.name,
+        value: base_stat,
+      }));
+      setStats(statData);
+    };
+    fetchData();
+  }, [pokemonName]);
 
-//     const [labels, setLabels] = useState([]);
+  const handleSelectChange = (event) => {
+    setPokemonName(event.target.value);
+  };
 
-//     useEffect(() => {
-//         axios
-//           .get("https://pokeapi.co/api/v2/pokemon")
-//           .then((response) => {
-//             const data = response.data.results.map((pokemon) => pokemon.name);
-//             console.log(data)
-//             setLabels(data);
-//           });
-//       }, []);
+  const renderPokemonOptions = () => {
+    const pokemonNames = ['charizard', 'pikachu', 'mewtwo', 'gengar'];
+    return pokemonNames.map((name) => (
+      <option key={name} value={name}>
+        {name}
+      </option>
+    ));
+  };
 
-//       const chartConfig = {
-//         labels: labels,
-//         datasets: [
-//           {
-//             label: "PokeAPI Timeline",
-//             data: [150, 90, 50, 40],
-//             backgroundColor: "rgba(255, 255, 255, 1)",
-//             borderColor: "rgba(4, 217, 255, 1)",
-//             borderWidth: 1,
-//           },
-//         ],
-//       };
-      
-//       return (
-//         <div className="TimeLine">
-//           <h1>PokeAPI Timeline Chart</h1>
-//           <Line data={chartConfig} />
-//         </div>
-//       );
-// }
+  const renderPieChart = () => {
+    const colors = ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)'];
 
-const [filter, setFilter] = useState("");
+    const total = stats.reduce((acc, curr) => acc + curr.value, 0);
 
-useEffect(() => {
-  async function fetchData() {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon");
-    const data = await response.json();
-    setPokeData(data.results);
-  }
-  fetchData();
-}, []);
+    return (
+      <div className="pie-chart" >
+        {stats.map((stat, index) => (
+          <div key={stat.name} className="pie-chart-slice" style={{ backgroundColor: colors[index % colors.length] }}>
+            <div className="pie-chart-slice-content">
+              <div className="pie-chart-slice-name">{stat.name}</div>
+              <div className="pie-chart-slice-value">{`${Math.round((stat.value / total) * 100)}%`}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
-const labels = pokeData.map((data) => data.name);
-const chartConfig = {
-  labels: labels,
-  datasets: [
-    {
-      label: "Pokemon",
-      data: pokeData.map((data) => data.id),
-      fill: false,
-      borderColor: "rgb(75, 192, 192)",
-      tension: 0.5,
-    },
-  ],
+  return (
+    <div className="timeline" style={{backgroundImage: `url(${Background})`, width: '1481px', height: '745px', marginTop: '-20px', backgroundRepeat: 'no-repeat', backgroundColor: '#111111'}}> 
+      <h3 className='PokeTitle'>Select a Pokemon:</h3>
+      <select className='filterTime' value={pokemonName} onChange={handleSelectChange}>
+        {renderPokemonOptions()}
+      </select>
+      {renderPieChart()}
+    </div>
+  );
 };
 
-const filteredData = pokeData.filter((data) =>
-  data.name.toLowerCase().includes(filter.toLowerCase())
-);
+export default PokemonPieChart;
 
-return (
-  <div className="TimePage">
-    <input className="Filter"
-      type="text"
-      placeholder="Filter by name..."
-      value={filter}
-      onChange={(event) => setFilter(event.target.value)}
-    />
-    <Line data={chartConfig} />
-  </div>
-);
-}
-
-export default Timeline;

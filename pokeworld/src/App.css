@@ -2,6 +2,18 @@ nav {
   color: azure;
 }
 
+.DiscoverButton{
+  margin-left: 180px;
+  background-color: transparent;
+  color: white;
+  width: 250px;
+  height: 100px;
+  margin-top: -100px;
+  border: 2px solid;
+  border-image: linear-gradient(to right, #04d9ff, #FF10F0) 1;
+  animation: rotate 2s linear infinite;
+}
+
 .CompareButton {
   margin-left: 600px;
   background-color: transparent;
@@ -14,18 +26,28 @@ nav {
   animation: rotate 2s linear infinite;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.timeline{
+  background-color: #111111;
+  padding-top: 150px;
+  color: aliceblue;
+  text-align: center;
 }
 
-.TimePage{
-  background-color: #1A0C35;
+.filterTime{
+  background-color: #B29D70;
+  color: #111111;
+  width: 300px;
+  height: 30px;
+  border: 0px;
+  border-image: linear-gradient(to right, #04d9ff, #FF10F0) 1; 
+  margin-bottom: 50px;
 }
+
+.PokeTitle{
+  color: #B29D70;
+  margin-bottom: 30px;
+}
+
 
 .Filter{
   border: none;
@@ -40,3 +62,29 @@ nav {
   color: white;
 }
 
+/* Compare Page CSS */
+
+.backgroundcompare{
+  height: 723px;
+  background-color: #111111;
+  padding-top: 150px;
+  padding-left: 550px;
+  color: white;
+}
+
+.ComTitle{
+  padding-bottom: 50px;
+  color: #B29D70;
+}
+
+.Comparebut{
+  margin-left: 50px;
+  margin-top: 50px;
+  background-color: transparent;
+  color: white;
+  width: 250px;
+  height: 80px;
+  border: 2px solid;
+  border-image: linear-gradient(to right, #04d9ff, #FF10F0) 1;
+  animation: rotate 2s linear infinite;
+}
